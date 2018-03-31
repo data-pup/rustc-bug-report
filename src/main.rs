@@ -1,5 +1,5 @@
-mod args;
-use args::collect_args as collect_args_in_mod;
+mod lib;
+use lib::collect_args as collect_args_in_mod;
 
 /// This function will not cause the compiler to panic.
 pub fn collect_args() -> Vec<String> {
