@@ -3,7 +3,8 @@
 /// function will not cause the same panic if it is moved to main.rs.
 pub fn foo() -> Vec<String> {
     std::env::args()
-        .skip(1)     // Compiler does not panic if this is commented out.
+        // .skip(1)     // Compiler does not panic if this is commented out.
+        .take(2)     // Compiler does not panic if this is commented out.
         .collect()   // NOTE: (Still fails, but error is identified correctly.)
 }
 
