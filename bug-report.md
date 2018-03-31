@@ -1,7 +1,5 @@
 # Bug Report
 
-(Note: Below is the bug report template from `CONTRIBUTING.md`)
-
 ### Description
 
 Expressions involving an adaptor function like `skip` can cause an internal
@@ -70,6 +68,21 @@ error: aborting due to previous error
 For more information about this error, try `rustc --explain E0433`.
 ```
 
+### Potential UX Fixes
+
+I ran into this error because the `::` error is not required for code in the
+crate root. If `foo` is moved from `lib.rc` to `main.rs`, then the internal
+compiler error no longer occurs.
+
+If code outside of the crate root causes an error due to the use of an
+undeclared type or module, it would be nice if the compiler warning would
+mention the possibility of a missing `::` prefix, if the name that could not
+be resolved was a type or module in the standard library.
+
+When I reviewed the information given by running `rustc --explain E0433`, it
+mostly mentions the possibility of typos being the cause of this error.
+Mentioning some other common situations that lead to symbols failing to
+resolve might be helpful.
 
 ## Meta
 
@@ -180,20 +193,4 @@ error: Could not compile `bug-report`.
 
 To learn more, run the command again with --verbose.
 ```
-
-### Potential UX Fixes
-
-I ran into this error because the `::` error is not required for code in the
-crate root. If `foo` is moved from `lib.rc` to `main.rs`, then the internal
-compiler error no longer occurs.
-
-If code outside of the crate root causes an error due to the use of an
-undeclared type or module, it would be nice if the compiler warning would
-mention the possibility of a missing `::` prefix, if the name that could not
-be resolved was a type or module in the standard library.
-
-When I reviewed the information given by running `rustc --explain E0433`, it
-mostly mentions the possibility of typos being the cause of this error.
-Mentioning some other common situations that lead to symbols failing to
-resolve might be helpful.
 
