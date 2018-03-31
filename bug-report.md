@@ -53,8 +53,9 @@ error: internal compiler error: librustc/ich/impls_ty.rs:906: ty::TypeVariants::
 thread 'rustc' panicked at 'Box<Any>', librustc_errors/lib.rs:543:9
 ```
 
-After commenting out the `skip(1)` line, the compiler does not panic, and only
-this output is seen after trying to compile:
+This panic will occur for other adapters, like `take(n)`. After commenting out
+the `skip(1)` line, the compiler does not panic. and only this output is seen
+after trying to compile:
 
 ```
 error[E0433]: failed to resolve. Use of undeclared type or module `std`
