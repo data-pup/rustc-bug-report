@@ -1,0 +1,102 @@
+   Compiling bug-report v0.1.0 (file:///home/user/Projects/rustc-bug)
+error[E0433]: failed to resolve. Use of undeclared type or module `std`
+ --> src/args.rs:6:5
+  |
+6 |     std::env::args()
+  |     ^^^ Use of undeclared type or module `std`
+
+error: internal compiler error: librustc/ich/impls_ty.rs:906: ty::TypeVariants::hash_stable() - Unexpected variant TyInfer(?0).
+
+thread 'rustc' panicked at 'Box<Any>', librustc_errors/lib.rs:543:9
+stack backtrace:
+   0:     0x7f5efd74e74b - std::sys::unix::backtrace::tracing::imp::unwind_backtrace::h79cac6f101b1c699
+                               at libstd/sys/unix/backtrace/tracing/gcc_s.rs:49
+   1:     0x7f5efd71a630 - std::sys_common::backtrace::print::hd8141126fcab7778
+                               at libstd/sys_common/backtrace.rs:71
+                               at libstd/sys_common/backtrace.rs:59
+   2:     0x7f5efd737c1d - std::panicking::default_hook::{{closure}}::h80d48b6bff250104
+                               at libstd/panicking.rs:207
+   3:     0x7f5efd737975 - std::panicking::default_hook::hddcbf0cc56665953
+                               at libstd/panicking.rs:223
+   4:     0x7f5ef9dca0cd - core::ops::function::Fn::call::h583b8d1c6362b51c
+   5:     0x7f5efd738169 - std::panicking::rust_panic_with_hook::hdaa6a017048d2ee3
+                               at libstd/panicking.rs:403
+   6:     0x7f5ef8804019 - std::panicking::begin_panic::hf8c487895a0831ef
+   7:     0x7f5ef881aa61 - rustc_errors::Handler::bug::hdf754621df76fa9b
+   8:     0x7f5ef9ebae1f - rustc::session::opt_span_bug_fmt::{{closure}}::hc341e12a3589d2a0
+   9:     0x7f5ef9ecec25 - rustc::ty::context::tls::with_opt::{{closure}}::h1bb1e27c4b6fbf53
+  10:     0x7f5ef9e6b193 - <std::thread::local::LocalKey<T>>::try_with::h3a781d7654d70287
+  11:     0x7f5ef9e5f1e6 - <std::thread::local::LocalKey<T>>::with::h26b37c891d78ea4e
+  12:     0x7f5ef9e4c26d - rustc::ty::context::tls::with::h7f5964c50c1847a0
+  13:     0x7f5ef9e4c9e7 - rustc::ty::context::tls::with_opt::hb3d0becb8fe70f41
+  14:     0x7f5ef9ff4b84 - rustc::session::opt_span_bug_fmt::h4182b9219713b03f
+  15:     0x7f5ef9ff4af6 - rustc::session::bug_fmt::h64eb7af8f88a4b7a
+  16:     0x7f5ef9fed081 - rustc::ich::impls_ty::<impl rustc_data_structures::stable_hasher::HashStable<rustc::ich::hcx::StableHashingContext<'a>> for rustc::ty::sty::TypeVariants<'gcx>>::hash_stable::h247ec2267f29eec5
+  17:     0x7f5ef9a5ac1f - <T as rustc::dep_graph::dep_node::DepNodeParams<'a, 'gcx, 'tcx>>::to_fingerprint::hc0329cc0bb1da4dd
+  18:     0x7f5ef9ad0604 - rustc::dep_graph::dep_node::DepNode::new::h3d73f49f76aa1d64
+  19:     0x7f5ef9d68cd2 - rustc::ty::maps::<impl rustc::ty::maps::queries::dropck_outlives<'tcx>>::try_get::h5d138b6eafc429f8
+  20:     0x7f5ef9c997b4 - rustc::ty::maps::TyCtxtAt::dropck_outlives::h164c69df1750ca04
+  21:     0x7f5efa004e36 - rustc::traits::query::dropck_outlives::<impl rustc::infer::at::At<'cx, 'gcx, 'tcx>>::dropck_outlives::h126259047b802d6e
+  22:     0x7f5efbf7c3c4 - rustc_typeck::check::dropck::check_safety_of_destructor_if_necessary::h46d8a216f92cee78
+  23:     0x7f5efc01e687 - rustc_typeck::check::regionck::RegionCtxt::check_safety_of_rvalue_destructor_if_necessary::h10450e8d785cb3b9
+  24:     0x7f5efc01c968 - <rustc_typeck::check::regionck::RegionCtxt<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_expr::hf41037bf5ad82bc7
+  25:     0x7f5efbf172ce - rustc::hir::intravisit::walk_expr::h58292d62848bdb21
+  26:     0x7f5efc01d197 - <rustc_typeck::check::regionck::RegionCtxt<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_expr::hf41037bf5ad82bc7
+  27:     0x7f5efbf172ce - rustc::hir::intravisit::walk_expr::h58292d62848bdb21
+  28:     0x7f5efc01d197 - <rustc_typeck::check::regionck::RegionCtxt<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_expr::hf41037bf5ad82bc7
+  29:     0x7f5efc01d00b - <rustc_typeck::check::regionck::RegionCtxt<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_expr::hf41037bf5ad82bc7
+  30:     0x7f5efc01bf3a - rustc_typeck::check::regionck::RegionCtxt::visit_fn_body::h8e3d4c10c711d253
+  31:     0x7f5efbed0e7a - rustc_typeck::check::regionck::<impl rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx>>::regionck_fn::he48e173c4a5e3976
+  32:     0x7f5efbf74ec2 - rustc::ty::context::tls::enter::hd919a14861abd9cf
+  33:     0x7f5efbf2dfe0 - rustc::infer::InferCtxtBuilder::enter::h4fe2c353472f8d6d
+  34:     0x7f5efbee64a1 - rustc_typeck::check::typeck_tables_of::h378b02afc9ceae7b
+  35:     0x7f5ef9cde4c8 - rustc::ty::maps::<impl rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute_result::h5ddee5228042916b
+  36:     0x7f5ef999d790 - rustc::dep_graph::graph::DepGraph::with_task_impl::h91e11a24ad1687a1
+  37:     0x7f5ef9a1c8a3 - rustc_errors::Handler::track_diagnostics::hecb078be57b20aec
+  38:     0x7f5ef9c13db7 - rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::cycle_check::h0a05188ad6afbe1f
+  39:     0x7f5ef9cde55e - rustc::ty::maps::<impl rustc::ty::maps::queries::typeck_tables_of<'tcx>>::force::h7b82e243ecc42e9b
+  40:     0x7f5ef9cdee02 - rustc::ty::maps::<impl rustc::ty::maps::queries::typeck_tables_of<'tcx>>::try_get::hb3ea68baac4a0b90
+  41:     0x7f5ef9c93a0a - rustc::ty::maps::TyCtxtAt::typeck_tables_of::hef5b31e4c8082347
+  42:     0x7f5ef9cde451 - rustc::ty::maps::<impl rustc::ty::maps::queries::typeck_tables_of<'tcx>>::ensure::h9d85076895f954cb
+  43:     0x7f5efc04168d - rustc::session::Session::track_errors::h14cef162cde69d47
+  44:     0x7f5efbee606a - rustc_typeck::check::typeck_item_bodies::h419577288ed3051f
+  45:     0x7f5ef999ac0c - rustc::dep_graph::graph::DepGraph::with_task_impl::h8c4d6303f922518b
+  46:     0x7f5ef9a1075f - rustc_errors::Handler::track_diagnostics::haf7aa86a44459ccf
+  47:     0x7f5ef9c51df7 - rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::cycle_check::hb5fea7d33f2f2dbb
+  48:     0x7f5ef9cdd2ac - rustc::ty::maps::<impl rustc::ty::maps::queries::typeck_item_bodies<'tcx>>::force::h5e861317c053227c
+  49:     0x7f5ef9cddabf - rustc::ty::maps::<impl rustc::ty::maps::queries::typeck_item_bodies<'tcx>>::try_get::h45da1614caf93b9b
+  50:     0x7f5ef9c93925 - rustc::ty::maps::TyCtxtAt::typeck_item_bodies::h1ef9ee28ba40715d
+  51:     0x7f5ef9c905ce - rustc::ty::maps::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::typeck_item_bodies::h98ca9ddd80dd1fd1
+  52:     0x7f5efc049379 - rustc_typeck::check_crate::hdd83d73a81f631f4
+  53:     0x7f5efdb52892 - <std::thread::local::LocalKey<T>>::with::h6a0c096cdb56eaf3
+  54:     0x7f5efdb57866 - <std::thread::local::LocalKey<T>>::with::hf0b3e3769400badd
+  55:     0x7f5efdbcb515 - rustc::ty::context::TyCtxt::create_and_enter::h6b755ecfae368a55
+  56:     0x7f5efdac7b24 - rustc_driver::driver::compile_input::h43021aa1e3e3cd9b
+  57:     0x7f5efdb7ee96 - rustc_driver::run_compiler_impl::h25ca6d943f6add74
+  58:     0x7f5efdaa2e45 - syntax::with_globals::he4e078b3fa950636
+  59:     0x7f5efdaf671d - std::sys_common::backtrace::__rust_begin_short_backtrace::h012542f0cbac090e
+  60:     0x7f5efd75b0be - __rust_maybe_catch_panic
+                               at libpanic_unwind/lib.rs:102
+  61:     0x7f5efdb009b7 - <F as alloc::boxed::FnBox<A>>::call_box::h860a9f3889f6a94d
+  62:     0x7f5efd752247 - std::sys_common::thread::start_thread::h02b2d693d94dc04a
+                               at /checkout/src/liballoc/boxed.rs:793
+                               at libstd/sys_common/thread.rs:24
+  63:     0x7f5efd720fe8 - std::sys::unix::thread::Thread::new::thread_start::h3e0c47e03936dd37
+                               at libstd/sys/unix/thread.rs:90
+  64:     0x7f5ef7b406b9 - start_thread
+  65:     0x7f5efd3ff41c - clone
+  66:                0x0 - <unknown>
+
+note: the compiler unexpectedly panicked. this is a bug.
+
+note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
+
+note: rustc 1.26.0-nightly (5508b2714 2018-03-18) running on x86_64-unknown-linux-gnu
+
+note: compiler flags: -C debuginfo=2 -C incremental --crate-type bin
+
+note: some of the compiler flags provided by cargo are hidden
+
+error: Could not compile `bug-report`.
+
+To learn more, run the command again with --verbose.
